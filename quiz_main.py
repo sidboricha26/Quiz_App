@@ -42,13 +42,25 @@ def gen():
         else:
             indexes.append(x)
 
-def show_result():
+def show_result(score):
     lbl_Question.destroy()
     r1.destroy()
     r2.destroy()
     r3.destroy()
     r4.destroy()
-
+    label_image = Label(
+        root,
+    )
+    label_image.pack()
+    label_resultxt = Label(
+        root,
+        font= ("Consolas", 20),
+    )
+    label_resultxt.pack()
+    if score >= 20:
+        img = PhotoImage(file="Images/great.png")
+        label_image.configure(image=img)
+        label_resultxt.configure(text="You are Excellent !!")
 
 def calc():
     global indexes, user_answer, answers
@@ -58,7 +70,7 @@ def calc():
         if user_answer == answers[i]:
             score = score + 5
         x += 1
-        show_result(score)
+    show_result(score)
 
 
 ques = 1
@@ -78,10 +90,8 @@ def selected():
     else:
         calc()
 
-
-
 def start_quiz():
-    global  lbl_Question, r1,r2, r3, r4
+    global lbl_Question, r1, r2, r3, r4
     lbl_Question = Label(
         root,
         text=questions[indexes[0]],
